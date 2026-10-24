@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: var(--font-anton);
+  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+/* Paleta: negro del tinte, hueso y caña de la fibra, oro como acento */
+@theme {
+  --color-negro: #0e0d0b;
+  --color-grafito: #1c1a17;
+  --color-hueso: #f5f1e8;
+  --color-cana: #e8dcc0;
+  --color-arena: #cdb98d;
+  --color-oro: #c9a048;
+  --color-oro-claro: #e3c27a;
+  --color-rojo: #b8321e;
+
+  --animate-marquesina: marquesina 30s linear infinite;
+  @keyframes marquesina {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  --animate-aparecer: aparecer 0.25s ease-out;
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+}
+
+body {
+  background: var(--color-hueso);
+  color: var(--color-negro);
+}
+
+/* Foco visible y coherente para navegación con teclado */
+:focus-visible {
+  outline: 2px solid var(--color-oro);
+  outline-offset: 2px;
+}
+
+/* Banda en zigzag, como las pintas del sombrero */
+.greca {
+  height: 12px;
+  background-repeat: repeat-x;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 10 L6 2 L12 10 L18 2 L24 10' fill='none' stroke='%230e0d0b' stroke-width='2'/%3E%3C/svg%3E");
+}
+
+.greca-claro {
+  height: 12px;
+  background-repeat: repeat-x;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 10 L6 2 L12 10 L18 2 L24 10' fill='none' stroke='%23c9a048' stroke-width='2'/%3E%3C/svg%3E");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
