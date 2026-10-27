@@ -9,7 +9,7 @@ type Props = {
 };
 
 // Foto del sombrero sobre fondo blanco. Mientras no haya foto se muestra la ilustración.
-export default function FotoSombrero({ producto, sizes = "(min-width: 1024px) 25vw, 50vw", className = "" }: Props) {
+export default function FotoSombrero({ producto, sizes = "(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw", className = "" }: Props) {
   return (
     <div className={`relative aspect-square overflow-hidden bg-white ${className}`}>
       {producto.imagen ? (

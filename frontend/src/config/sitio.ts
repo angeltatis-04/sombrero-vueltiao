@@ -1,5 +1,7 @@
 // Textos, enlaces y reglas de negocio de la tienda. Cambiar aquí, no en los componentes.
 
+import { DESCUENTOS } from "@/data/tienda";
+
 export const SITIO = {
   nombre: "Sombreros Vueltiao",
   marca: "Sombreros Vueltiao®",
@@ -10,8 +12,19 @@ export const SITIO = {
     "Sombreros vueltiaos originales desde Tuchín, Córdoba, cuna del sombrero vueltiao. Artesanía, estilo e identidad. Envíos a toda Colombia.",
   // Ruta del logo en /public (p. ej. "/logo.png"). Si es null se muestra el nombre en texto.
   logo: null as string | null,
-  // Foto del banner principal. Ideal: un sombrero vueltiao en alta calidad, horizontal (mín. 2400 px de ancho).
-  fotoPortada: "/artistas/artista-1.jpg",
+  // Fotos del banner principal; se van turnando. Ideal: alta calidad, horizontales (mín. 2400 px de ancho).
+  fotosPortada: [
+    "/artistas/artista-1.jpg",
+    "/artistas/artista-2.jpg",
+    "/artistas/artista-3.jpg",
+    "/artistas/artista-4.jpg",
+    "/artistas/artista-5.jpg",
+    "/artistas/artista-6.jpg",
+    "/artistas/artista-7.jpg",
+    "/artistas/artista-8.jpg",
+  ],
+  // Segundos que dura cada foto del banner
+  segundosPorFoto: 5,
 };
 
 // Datos legales y de contacto de la empresa. Los campos vacíos no se muestran en la página.
@@ -26,14 +39,23 @@ export const EMPRESA = {
 
 // Pega aquí la URL completa de cada red. Las que queden vacías no se muestran.
 export const REDES = {
-  instagram: "",
+  instagram: "https://www.instagram.com/purosombrerovueltia0",
   facebook: "",
   tiktok: "",
 };
 
-export const hayRedes = Object.values(REDES).some(Boolean);
+// WhatsApp de ventas: número con indicativo de país, sin espacios ni "+". Vacío = no se muestra.
+export const WHATSAPP = {
+  numero: "573022933064",
+  mensaje: "Hola, quiero información sobre sus productos.",
+};
 
-// La tienda es una página única: las secciones del inicio se enlazan con anclas.
+export const enlaceWhatsApp = (mensaje = WHATSAPP.mensaje) =>
+  `https://wa.me/${WHATSAPP.numero}?text=${encodeURIComponent(mensaje)}`;
+
+export const hayRedes = Boolean(WHATSAPP.numero) || Object.values(REDES).some(Boolean);
+
+// Ids de las secciones, para enlazar con anclas (#).
 export const SECCIONES = {
   nosotros: "nosotros",
   coleccion: "coleccion",
@@ -45,31 +67,37 @@ export const SECCIONES = {
 
 export const RUTAS = {
   inicio: "/",
-  nosotros: `/#${SECCIONES.nosotros}`,
+  nosotros: "/nosotros",
   catalogo: `/#${SECCIONES.coleccion}`,
+  descuentos: "/descuentos",
   producto: (slug: string) => `/productos/${slug}`,
   catalogoPorVueltas: (vueltas: number) => `/?vueltas=${vueltas}#${SECCIONES.coleccion}`,
+  catalogoPorCategoria: (id: string) => `/?categoria=${id}#${SECCIONES.coleccion}`,
   busqueda: (q: string) => `/?q=${encodeURIComponent(q)}#${SECCIONES.coleccion}`,
-  artistas: `/#${SECCIONES.artistas}`,
-  guiaVueltas: `/#${SECCIONES.vueltas}`,
-  proceso: `/#${SECCIONES.proceso}`,
-  contacto: `/#${SECCIONES.contacto}`,
+  artistas: "/colaboraciones",
+  guiaVueltas: "/vueltas",
+  proceso: `/nosotros#${SECCIONES.proceso}`,
+  contacto: "/contacto",
   carrito: "/carrito",
   login: "/login",
   registro: "/registro",
 };
 
+const hayDescuentos = Object.keys(DESCUENTOS).length > 0;
+
+// La colección está en el inicio; las demás son páginas aparte
 export const ENLACES_NAV = [
-  { href: RUTAS.nosotros, label: "Nosotros" },
+  ...(hayDescuentos ? [{ href: RUTAS.descuentos, label: "Descuentos" }] : []),
   { href: RUTAS.catalogo, label: "Colección" },
-  { href: RUTAS.artistas, label: "Colaboraciones" },
+  { href: RUTAS.nosotros, label: "Nosotros" },
   { href: RUTAS.guiaVueltas, label: "Vueltas" },
   { href: RUTAS.contacto, label: "Contacto" },
 ];
 
 export const ENLACES_FOOTER = [
-  { href: RUTAS.nosotros, label: "Nosotros" },
+  ...(hayDescuentos ? [{ href: RUTAS.descuentos, label: "Descuentos" }] : []),
   { href: RUTAS.catalogo, label: "Colección" },
+  { href: RUTAS.nosotros, label: "Nosotros" },
   { href: RUTAS.artistas, label: "Colaboraciones" },
   { href: RUTAS.guiaVueltas, label: "Guía de vueltas" },
   { href: RUTAS.carrito, label: "Carrito" },

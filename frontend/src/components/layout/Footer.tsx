@@ -5,11 +5,11 @@ import { EMPRESA, ENLACES_CUENTA, ENLACES_FOOTER, RUTAS, SITIO, hayRedes } from 
 function Enlaces({ titulo, enlaces }: { titulo: string; enlaces: { href: string; label: string }[] }) {
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-oro">{titulo}</p>
-      <ul className="mt-4 space-y-2 text-sm text-hueso/70">
+      <p className="text-sm font-semibold text-oro">{titulo}</p>
+      <ul className="mt-4 space-y-2 text-sm text-negro/70">
         {enlaces.map((e) => (
           <li key={e.href}>
-            <Link href={e.href} className="hover:text-hueso">
+            <Link href={e.href} className="hover:text-negro">
               {e.label}
             </Link>
           </li>
@@ -29,16 +29,15 @@ export default function Footer() {
   ].filter(Boolean) as string[];
 
   return (
-    <footer className="bg-negro text-hueso">
-      <div className="greca-claro opacity-70" />
-      <div className="mx-auto max-w-7xl px-4 pt-16">
-        <p className="max-w-3xl font-serif text-2xl italic leading-snug text-hueso/80 md:text-3xl">{SITIO.cierre}</p>
+    <footer className="border-t border-negro/5 bg-white/50 backdrop-blur-xl">
+      <div className="mx-auto max-w-7xl px-4 pt-14">
+        <p className="max-w-2xl font-serif text-xl italic leading-snug text-negro/75 md:text-2xl">{SITIO.cierre}</p>
 
-        <div className="mt-14 grid gap-10 border-t border-hueso/15 pt-10 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mt-12 grid gap-10 border-t border-negro/10 pt-10 sm:grid-cols-2 md:grid-cols-4">
           <div className="md:col-span-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-oro">Contacto</p>
-            <p className="mt-3 font-display text-3xl uppercase">{EMPRESA.razonSocial}</p>
-            <ul className="mt-3 space-y-1 text-sm text-hueso/70">
+            <p className="text-sm font-semibold text-oro">Contacto</p>
+            <p className="mt-3 text-xl font-semibold">{EMPRESA.razonSocial}</p>
+            <ul className="mt-3 space-y-1 text-sm text-negro/70">
               {contacto.map((dato) => (
                 <li key={dato}>{dato}</li>
               ))}
@@ -50,13 +49,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <p
-        className="select-none overflow-hidden whitespace-nowrap px-4 pt-10 text-center font-display text-[17vw] uppercase leading-[0.8] text-hueso/[0.06]"
-        aria-hidden
-      >
-        Vueltiao
-      </p>
-      <div className="border-t border-hueso/10 py-5 text-center text-xs text-hueso/50">
+      <div className="mt-14 border-t border-negro/5 py-5 text-center text-xs text-negro/55">
         © {new Date().getFullYear()} {SITIO.marca}. {EMPRESA.ciudad}, cuna del sombrero vueltiao.
       </div>
     </footer>

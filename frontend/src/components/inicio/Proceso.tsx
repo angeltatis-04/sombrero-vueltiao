@@ -13,7 +13,7 @@ const PASOS = [
 
 export default function Proceso() {
   return (
-    <section id={SECCIONES.proceso} className="scroll-mt-20 bg-cana py-24 md:py-32">
+    <section id={SECCIONES.proceso} className="scroll-mt-20 bg-hueso py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <div className="grid gap-14 md:grid-cols-2">
           <TituloSeccion
@@ -23,12 +23,12 @@ export default function Proceso() {
             Una historia <br />
             <span className="text-oro">tejida a mano</span>
           </TituloSeccion>
-          <ol className="border-t border-negro/20">
+          <ol className="space-y-3">
             {PASOS.map((p, i) => (
-              <li key={p.paso} className="flex gap-6 border-b border-negro/20 py-6">
-                <span className="font-display text-4xl leading-none text-oro">0{i + 1}</span>
+              <li key={p.paso} className="aparecer flex gap-5 rounded-2xl bg-white p-5">
+                <span className="font-display text-3xl leading-none text-oro">0{i + 1}</span>
                 <div>
-                  <p className="font-display text-2xl uppercase">{p.paso}</p>
+                  <p className="text-lg font-semibold">{p.paso}</p>
                   <p className="mt-1 leading-relaxed text-negro/70">{p.texto}</p>
                 </div>
               </li>
@@ -41,10 +41,10 @@ export default function Proceso() {
           <div className="-mx-4 mt-16 flex snap-x gap-3 overflow-x-auto px-4 md:mx-0 md:grid md:grid-cols-4 md:px-0">
             {FOTOS_PROCESO.map((f) => (
               <figure key={f.src} className="w-64 shrink-0 snap-start md:w-auto">
-                <div className="relative aspect-[3/4] overflow-hidden">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
                   <Image src={f.src} alt={f.pie} fill sizes="(min-width: 768px) 25vw, 16rem" className="object-cover" />
                 </div>
-                <figcaption className="mt-2 text-sm text-negro/60">{f.pie}</figcaption>
+                <figcaption className="mt-2 text-sm text-negro/70">{f.pie}</figcaption>
               </figure>
             ))}
           </div>

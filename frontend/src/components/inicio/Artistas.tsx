@@ -35,29 +35,29 @@ export default function Artistas() {
   const foto = activa !== null ? FOTOS_ARTISTAS[activa] : null;
 
   return (
-    <section id={SECCIONES.artistas} className="scroll-mt-20 bg-negro py-24 text-hueso md:py-32">
+    <section id={SECCIONES.artistas} className="scroll-mt-20 py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <TituloSeccion antetitulo="Colaboraciones">
+          <TituloSeccion antetitulo="Colaboraciones" as="h1">
             Colaboraciones <br />
             <span className="text-oro">con artistas</span>
           </TituloSeccion>
-          <p className="max-w-sm text-hueso/65">
+          <p className="max-w-sm text-negro/70">
             Artistas que han lucido un {SITIO.marca} en tarima, giras y eventos. Toca una foto para verla en grande.
           </p>
         </div>
 
         {/* Cuadrícula de 2 (celular) y 4 (escritorio) columnas. Si a la última fila le falta
             justo una celda, el enlace a la colección la completa. */}
-        <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
           {FOTOS_ARTISTAS.map((f, i) => (
-            <button key={f.src} onClick={() => setActiva(i)} className="group relative aspect-[3/4] overflow-hidden">
+            <button key={f.src} onClick={() => setActiva(i)} className="aparecer group relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
                 src={f.src}
                 alt={textoAlt(f)}
                 fill
                 sizes="(min-width: 768px) 25vw, 50vw"
-                className="object-cover object-top transition duration-500 group-hover:scale-105 md:grayscale md:group-hover:grayscale-0"
+                className="object-cover object-top transition duration-500 group-hover:scale-105"
               />
               {f.nombre && (
                 <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 p-3 text-left text-sm font-medium">
@@ -69,10 +69,10 @@ export default function Artistas() {
           {FOTOS_ARTISTAS.length % 4 === 3 && (
             <Link
               href={RUTAS.catalogo}
-              className="flex aspect-[3/4] flex-col justify-between bg-oro p-5 text-negro transition-colors hover:bg-oro-claro"
+              className="flex aspect-[4/5] flex-col justify-between rounded-2xl border border-white/80 bg-white/60 backdrop-blur-md p-5 text-negro transition-colors hover:bg-white"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.2em]">Colección</span>
-              <span className="font-display text-3xl uppercase leading-none md:text-4xl">
+              <span className="text-sm font-medium">Colección</span>
+              <span className="font-display text-xl leading-tight md:text-2xl">
                 ¿Y tú? <br />
                 Encuentra el tuyo →
               </span>
@@ -83,7 +83,7 @@ export default function Artistas() {
           <div className="mt-10 text-center">
             <Link
               href={RUTAS.catalogo}
-              className="border-b border-oro pb-1 text-xs font-semibold uppercase tracking-[0.2em] text-oro hover:text-oro-claro"
+              className="rounded-full border border-oro/50 px-5 py-2.5 text-sm font-medium text-oro hover:border-oro"
             >
               ¿Y tú? Encuentra el tuyo →
             </Link>

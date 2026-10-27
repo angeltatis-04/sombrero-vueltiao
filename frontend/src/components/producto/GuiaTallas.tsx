@@ -39,11 +39,11 @@ export default function GuiaTallas() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="titulo-guia-tallas"
-            className="animate-aparecer max-h-[90dvh] w-full max-w-lg overflow-y-auto bg-hueso p-6 sm:p-8"
+            className="animate-aparecer max-h-[90dvh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-white p-6 sm:rounded-3xl sm:p-8"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
-              <h2 id="titulo-guia-tallas" className="font-display text-3xl uppercase">
+              <h2 id="titulo-guia-tallas" className="text-2xl font-semibold">
                 Guía de tallas
               </h2>
               <button onClick={() => setAbierta(false)} className="-mr-2 -mt-1 p-2 text-2xl leading-none" aria-label="Cerrar">
@@ -62,9 +62,9 @@ export default function GuiaTallas() {
                 <span className="font-semibold text-negro">3.</span> Si quedas entre dos tallas, elige la mayor.
               </li>
             </ol>
-            <table className="mt-6 w-full border-collapse text-sm">
+            <table className="mt-6 w-full border-collapse overflow-hidden rounded-2xl bg-hueso/60 text-sm">
               <thead>
-                <tr className="bg-negro text-left text-[11px] uppercase tracking-[0.15em] text-hueso">
+                <tr className="border-b border-negro/15 text-left text-xs text-negro/65">
                   <th scope="col" className="px-3 py-2.5 font-semibold">Talla</th>
                   <th scope="col" className="px-3 py-2.5 font-semibold">Centímetros</th>
                   <th scope="col" className="px-3 py-2.5 font-semibold">Pulgadas</th>
@@ -72,8 +72,8 @@ export default function GuiaTallas() {
               </thead>
               <tbody>
                 {TALLAS.map((t) => (
-                  <tr key={t.talla} className="border-b border-negro/10 even:bg-cana/40">
-                    <th scope="row" className="px-3 py-3 text-left font-display text-lg">{t.talla}</th>
+                  <tr key={t.talla} className="border-b border-negro/5 last:border-0">
+                    <th scope="row" className="px-3 py-3 text-left font-semibold">{t.talla}</th>
                     <td className="px-3 py-3">{t.centimetros}</td>
                     <td className="px-3 py-3">{t.pulgadas}</td>
                   </tr>

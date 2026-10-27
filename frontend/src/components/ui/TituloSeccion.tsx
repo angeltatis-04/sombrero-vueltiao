@@ -13,10 +13,10 @@ type Props = {
 // Encabezado estándar de sección: antetítulo + título grande en mayúsculas.
 export default function TituloSeccion({ antetitulo, children, descripcion, tono, as: Tag = "h2", className = "" }: Props) {
   return (
-    <div className={className}>
+    <div className={`aparecer ${className}`}>
       <Antetitulo tono={tono}>{antetitulo}</Antetitulo>
-      <Tag className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">{children}</Tag>
-      {descripcion && <p className="mt-5 max-w-xl leading-relaxed opacity-70">{descripcion}</p>}
+      <Tag className="mt-3 font-display text-3xl leading-[1.1] md:text-[2.6rem]">{children}</Tag>
+      {descripcion && <p className="mt-5 max-w-xl leading-relaxed opacity-80">{descripcion}</p>}
     </div>
   );
 }

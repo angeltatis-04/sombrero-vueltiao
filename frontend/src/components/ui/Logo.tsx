@@ -7,8 +7,8 @@ export default function Logo() {
     return <Image src={SITIO.logo} alt={SITIO.marca} width={160} height={160} className="h-11 w-auto" priority />;
   }
   return (
-    <span className="whitespace-nowrap font-display text-lg uppercase leading-none tracking-wide min-[380px]:text-xl">
-      Sombreros <span className="text-oro">Vueltiao</span>
+    <span className="whitespace-nowrap text-sm font-extrabold uppercase leading-none tracking-[0.18em] min-[380px]:text-base md:text-lg">
+      Sombreros <span className="font-light">Vueltiao</span>
       <sup className="ml-0.5 text-[10px]">®</sup>
     </span>
   );

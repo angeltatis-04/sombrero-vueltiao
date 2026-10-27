@@ -10,11 +10,11 @@ export type Beneficio = { icono: ReactNode; titulo: string; texto: string };
 // Solo incluye los que están confirmados en config/sitio.ts y data/tienda.ts.
 export function getBeneficios(): Beneficio[] {
   const lista: (Beneficio | false)[] = [
-    { icono: <IconoMano />, titulo: "Hecho a mano", texto: "Tejido en caña flecha por artesanos de Tuchín, Córdoba." },
+    { icono: <IconoMano />, titulo: "Hecho a mano", texto: "100% original, tejido en caña flecha por artesanos de Tuchín. Se dobla y se desdobla." },
     PERSONALIZACION.gratuita && {
       icono: <IconoPluma />,
       titulo: "Personalización gratuita",
-      texto: "Agrega tu nombre e indicaciones al momento de comprar.",
+      texto: `Tu ${PERSONALIZACION.incluye} en el sombrero, totalmente gratis.`,
     },
     {
       icono: <IconoCamion />,

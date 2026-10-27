@@ -2,19 +2,20 @@ import Link from "next/link";
 import type { ButtonHTMLAttributes, ComponentProps } from "react";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] transition-colors active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40";
+  "inline-flex items-center justify-center gap-2 rounded-full text-sm font-semibold transition duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40";
 
 const VARIANTES = {
-  primario: "bg-negro text-hueso hover:bg-oro hover:text-negro",
-  oro: "bg-oro text-negro hover:bg-oro-claro",
-  secundario: "border border-negro hover:bg-negro hover:text-hueso",
-  contorno: "border border-hueso/60 text-hueso hover:border-hueso hover:bg-hueso hover:text-negro",
-  claro: "bg-hueso text-negro hover:bg-white",
+  primario: "bg-negro text-white hover:bg-grafito",
+  oro: "bg-oro text-white hover:bg-grafito",
+  secundario: "border border-negro/20 hover:border-negro",
+  // Vidrio sobre fotos
+  contorno: "border border-white/35 bg-white/10 text-white backdrop-blur-md hover:bg-white/25",
+  claro: "bg-white/85 text-negro backdrop-blur-md hover:bg-white",
 };
 
 const TAMANOS = {
   md: "h-12 px-6",
-  lg: "px-8 py-4",
+  lg: "h-13 px-7",
 };
 
 type Estilo = { variante?: keyof typeof VARIANTES; tamano?: keyof typeof TAMANOS };

@@ -11,10 +11,9 @@ type Props = {
 export default function AuthCard({ titulo, subtitulo, children, pie }: Props) {
   return (
     <div className="mx-auto max-w-md px-4 py-16">
-      <div className="border border-negro/10 bg-hueso p-8 shadow-sm">
-        <div className="greca -mx-8 -mt-8 mb-8 opacity-70" />
-        <h1 className="font-display text-4xl uppercase leading-none">{titulo}</h1>
-        <p className="mt-2 text-sm text-negro/60">{subtitulo}</p>
+      <div className="rounded-3xl border border-negro/10 bg-white p-8 shadow-sm">
+        <h1 className="font-display text-3xl leading-tight">{titulo}</h1>
+        <p className="mt-2 text-sm text-negro/70">{subtitulo}</p>
         <div className="mt-8">{children}</div>
       </div>
       <p className="mt-6 text-center text-sm text-negro/70">

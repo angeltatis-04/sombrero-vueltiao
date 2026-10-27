@@ -11,9 +11,9 @@ type Props = {
 
 export default function SelectorCantidad({ valor, onCambiar, tamano = "md" }: Props) {
   const t = TAMANOS[tamano];
-  const boton = `${t.boton} transition-colors hover:bg-negro/5 disabled:opacity-30`;
+  const boton = `${t.boton} rounded-full transition-colors hover:bg-negro/5 disabled:opacity-30`;
   return (
-    <div className="inline-flex items-center border border-negro/20 bg-white" role="group" aria-label="Cantidad">
+    <div className="inline-flex items-center rounded-full border border-negro/15 bg-white" role="group" aria-label="Cantidad">
       <button type="button" className={boton} onClick={() => onCambiar(Math.max(1, valor - 1))} disabled={valor <= 1} aria-label="Restar uno">
         −
       </button>

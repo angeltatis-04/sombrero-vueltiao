@@ -23,12 +23,13 @@ export default function AgregarAlCarrito({ slug }: { slug: string }) {
   const [ala, setAla] = useState("");
   const [indicaciones, setIndicaciones] = useState("");
   const [faltaTalla, setFaltaTalla] = useState(false);
-  const [agregado, setAgregado] = useState(false);
+  // Lo último que se agregó, para la confirmación
+  const [agregado, setAgregado] = useState<{ talla: string; cantidad: number } | null>(null);
 
   // Cualquier cambio oculta la confirmación anterior
   const cambiar = <T,>(set: (v: T) => void) => (v: T) => {
     set(v);
-    setAgregado(false);
+    setAgregado(null);
   };
 
   const onAgregar = () => {
@@ -37,7 +38,10 @@ export default function AgregarAlCarrito({ slug }: { slug: string }) {
       return;
     }
     agregar({ slug, talla, cantidad, personalizacion: limpiarPersonalizacion({ nombre, ala, indicaciones }) });
-    setAgregado(true);
+    setAgregado({ talla, cantidad });
+    // Queda listo para elegir la talla del siguiente sombrero
+    setTalla(null);
+    setCantidad(1);
   };
 
   return (
@@ -45,7 +49,7 @@ export default function AgregarAlCarrito({ slug }: { slug: string }) {
       {/* Talla */}
       <fieldset>
         <div className="mb-3 flex items-center justify-between">
-          <legend className="text-xs font-semibold uppercase tracking-[0.15em]">Talla</legend>
+          <legend className="text-sm font-medium">Talla</legend>
           <GuiaTallas />
         </div>
         <div className="grid grid-cols-5 gap-2">
@@ -59,19 +63,19 @@ export default function AgregarAlCarrito({ slug }: { slug: string }) {
                 cambiar(setTalla)(t);
                 setFaltaTalla(false);
               }}
-              className={`flex h-14 flex-col items-center justify-center border transition-all ${
-                talla === t ? "border-negro bg-negro text-hueso" : "border-negro/20 bg-white hover:border-negro"
+              className={`flex h-14 flex-col items-center justify-center rounded-xl border transition-all ${
+                talla === t ? "border-negro bg-negro text-white" : "border-negro/15 bg-white hover:border-negro"
               }`}
             >
               <span className="text-sm font-semibold">{t}</span>
-              <span className={`text-[10px] ${talla === t ? "text-hueso/70" : "text-negro/50"}`}>
+              <span className={`text-[10px] ${talla === t ? "text-white/70" : "text-negro/60"}`}>
                 {centimetros.replace(" cm", "")}
               </span>
             </button>
           ))}
         </div>
         {talla && (
-          <p className="mt-2 text-sm text-negro/60">
+          <p className="mt-2 text-sm text-negro/70">
             Talla {talla}: contorno de cabeza de {TALLAS.find((t) => t.talla === talla)?.centimetros}.
           </p>
         )}
@@ -83,14 +87,14 @@ export default function AgregarAlCarrito({ slug }: { slug: string }) {
       </fieldset>
 
       {/* Personalización */}
-      <fieldset className="border border-negro/15 bg-cana/60 p-5 sm:p-6">
+      <fieldset className="rounded-2xl border border-negro/10 bg-white p-5 sm:p-6">
         <div className="flex items-center justify-between gap-3">
-          <legend className="font-display text-2xl uppercase">Personalización</legend>
+          <legend className="text-lg font-semibold">Personalización</legend>
           {PERSONALIZACION.gratuita && (
-            <span className="bg-oro px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-negro">Gratis</span>
+            <span className="rounded-full bg-oro/20 px-2.5 py-0.5 text-xs font-semibold text-negro">Gratis</span>
           )}
         </div>
-        <p className="mt-1 text-sm text-negro/60">Haz que tu sombrero sea único. Todos los campos son opcionales.</p>
+        <p className="mt-1 text-sm text-negro/70">Haz que tu sombrero sea único. Todos los campos son opcionales.</p>
 
         <div className="mt-5 space-y-5">
           <Campo
@@ -106,7 +110,7 @@ export default function AgregarAlCarrito({ slug }: { slug: string }) {
 
           {PERSONALIZACION.tiposAla.length > 0 && (
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.15em]">Tipo de ala</p>
+              <p className="mb-2 text-sm font-medium">Tipo de ala</p>
               <div className="flex flex-wrap gap-2">
                 {PERSONALIZACION.tiposAla.map((opcion) => (
                   <button
@@ -114,8 +118,8 @@ export default function AgregarAlCarrito({ slug }: { slug: string }) {
                     type="button"
                     aria-pressed={ala === opcion}
                     onClick={() => cambiar(setAla)(ala === opcion ? "" : opcion)}
-                    className={`border px-4 py-2.5 text-sm transition-colors ${
-                      ala === opcion ? "border-negro bg-negro text-hueso" : "border-negro/20 bg-white hover:border-negro"
+                    className={`rounded-full border px-4 py-2 text-sm transition-colors ${
+                      ala === opcion ? "border-negro bg-negro text-white" : "border-negro/15 bg-white hover:border-negro"
                     }`}
                   >
                     {opcion}
@@ -146,20 +150,21 @@ export default function AgregarAlCarrito({ slug }: { slug: string }) {
       </div>
 
       {agregado && (
-        <div className="animate-aparecer flex items-start gap-3 border border-negro/15 bg-white p-4" role="status">
+        <div className="animate-aparecer flex items-start gap-3 rounded-2xl bg-hueso p-4" role="status">
           <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-negro text-hueso">
             <IconoCheck />
           </span>
           <div className="flex-1">
             <p className="font-semibold">Agregado a tu carrito</p>
-            <p className="text-sm text-negro/60">
-              Talla {talla} · {cantidad} {cantidad === 1 ? "unidad" : "unidades"}
+            <p className="text-sm text-negro/70">
+              Talla {agregado.talla} · {agregado.cantidad} {agregado.cantidad === 1 ? "unidad" : "unidades"}
             </p>
-            <div className="mt-3 flex gap-5 text-[11px] font-semibold uppercase tracking-[0.18em]">
-              <Link href={RUTAS.carrito} className="border-b border-negro pb-0.5 hover:text-oro">
+            <p className="mt-1 text-sm text-negro/70">¿Otro sombrero? Elige su talla y agrégalo.</p>
+            <div className="mt-3 flex gap-5 text-sm font-medium">
+              <Link href={RUTAS.carrito} className="underline underline-offset-4 hover:text-oro">
                 Ver carrito
               </Link>
-              <Link href={RUTAS.catalogo} className="text-negro/60 hover:text-negro">
+              <Link href={RUTAS.catalogo} className="text-negro/70 hover:text-negro">
                 Seguir comprando
               </Link>
             </div>

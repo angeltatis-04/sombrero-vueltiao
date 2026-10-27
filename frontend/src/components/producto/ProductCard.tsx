@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import FotoSombrero from "./FotoSombrero";
 import Precio from "./Precio";
@@ -8,34 +9,37 @@ import type { Producto } from "@/types/producto";
 export default function ProductCard({ producto }: { producto: Producto }) {
   const descuento = porcentajeDescuento(producto);
   const nivel = getNivelVueltas(producto.vueltas);
+  const segunda = producto.imagen && producto.galeria?.[0];
 
   return (
-    <Link href={RUTAS.producto(producto.slug)} className="group block">
-      <div className="relative overflow-hidden">
-        <FotoSombrero producto={producto} className="transition-transform duration-500 group-hover:scale-105" />
-        <div className="absolute left-0 top-3 flex flex-col items-start gap-1">
+    <Link href={RUTAS.producto(producto.slug)} className="aparecer group block">
+      <div className="relative overflow-hidden rounded-2xl ring-1 ring-negro/5 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-negro/10">
+        <FotoSombrero producto={producto} className="transition-transform duration-500 group-hover:scale-[1.04]" />
+        {/* Con segunda foto, al pasar el mouse se cambia por ella */}
+        {segunda && (
+          <Image
+            src={segunda}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+            className="bg-white object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          />
+        )}
+        <div className="absolute left-2.5 top-2.5 flex flex-col items-start gap-1">
           {producto.nuevo && (
-            <span className="bg-negro px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-hueso">Nuevo</span>
+            <span className="rounded-full bg-white/80 text-negro ring-1 ring-negro/5 backdrop-blur-md px-2.5 py-0.5 text-[11px] font-medium">Nuevo</span>
           )}
           {descuento > 0 && (
-            <span className="bg-rojo px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white">
-              -{descuento}%
-            </span>
+            <span className="rounded-full bg-oferta px-2.5 py-0.5 text-[11px] font-bold text-white">-{descuento}%</span>
           )}
         </div>
-        <span className="absolute inset-x-0 bottom-0 translate-y-full bg-negro py-3 text-center text-xs font-semibold uppercase tracking-[0.2em] text-hueso transition-transform duration-300 group-hover:translate-y-0">
-          Ver sombrero →
-        </span>
       </div>
-      {/* En celular el precio va debajo del nombre; desde sm, a la derecha */}
-      <div className="mt-4 flex flex-col gap-1 border-t border-negro/15 pt-3 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-        <div className="min-w-0">
-          <h3 className="font-display text-xl uppercase leading-tight group-hover:text-oro">{producto.nombre}</h3>
-          <p className="mt-0.5 text-xs uppercase tracking-[0.15em] text-negro/55">
-            {producto.vueltas} vueltas{nivel && ` · ${nivel.nombre}`}
-          </p>
-        </div>
-        <Precio precio={producto.precio} precioAnterior={producto.precioAnterior} tamano="apilado" />
+      <div className="mt-3 px-0.5">
+        <p className="text-xs text-negro/60">
+          {producto.vueltas} vueltas{nivel && ` · ${nivel.nombre}`}
+        </p>
+        <h3 className="mt-0.5 font-medium leading-snug group-hover:text-oro">{producto.nombre}</h3>
+        <Precio precio={producto.precio} precioAnterior={producto.precioAnterior} className="mt-1 text-[15px]" />
       </div>
     </Link>
   );

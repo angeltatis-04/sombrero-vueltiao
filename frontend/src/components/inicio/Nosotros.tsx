@@ -7,33 +7,33 @@ export default function Nosotros() {
   const foto = FOTOS_ARTISTAS[6];
 
   return (
-    <section id={SECCIONES.nosotros} className="scroll-mt-20 py-24 md:py-32">
+    <section id={SECCIONES.nosotros} className="scroll-mt-20 py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <Antetitulo>Quiénes somos</Antetitulo>
-        <h2 className="mt-6 font-display text-6xl uppercase leading-[0.9] md:text-8xl lg:text-[9rem]">
+        <h1 className="mt-6 font-display text-4xl uppercase leading-[1.05] md:text-5xl lg:text-6xl">
           Somos <br className="hidden md:block" />
-          Sombreros <span className="text-oro">Vueltiao</span>
+          Sombreros <span className="font-light">Vueltiao</span>
           <sup className="text-[0.35em]">®</sup>
-        </h2>
-        <p className="mt-6 font-serif text-2xl italic text-negro/70 md:text-3xl">{SITIO.eslogan}</p>
+        </h1>
+        <p className="mt-6 font-serif text-xl italic text-negro/70 md:text-2xl">{SITIO.eslogan}</p>
 
-        <div className="mt-16 grid gap-12 md:grid-cols-12 md:gap-16">
-          <div className="relative md:col-span-5">
+        <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-16">
+          <div className="relative md:col-span-4">
             <Image
               src={foto.src}
               width={foto.ancho}
               height={foto.alto}
               alt={`Clientes luciendo sombreros de ${SITIO.marca}`}
-              sizes="(min-width: 768px) 40vw, 100vw"
-              className="aspect-[4/5] w-full object-cover transition duration-700 md:grayscale md:hover:grayscale-0"
+              sizes="(min-width: 768px) 33vw, 100vw"
+              className="aspect-[4/5] w-full rounded-3xl object-cover"
             />
-            <span className="absolute -bottom-5 right-0 bg-oro px-5 py-3 font-display text-lg uppercase text-negro md:-right-6">
+            <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-negro backdrop-blur">
               Tuchín, Córdoba
             </span>
           </div>
 
-          <div className="space-y-6 text-lg leading-relaxed text-negro/75 md:col-span-7">
-            <p className="text-xl text-negro md:text-2xl">
+          <div className="space-y-6 text-base leading-relaxed text-negro/75 md:col-span-8">
+            <p className="text-lg text-negro md:text-xl">
               En {SITIO.marca} convertimos una tradición colombiana en una pieza que habla de estilo, identidad y
               orgullo.
             </p>
@@ -42,7 +42,7 @@ export default function Nosotros() {
               cultura a cada vez más personas, conectando la artesanía ancestral con quienes buscan algo auténtico,
               especial y diferente.
             </p>
-            <blockquote className="border-l-4 border-oro py-2 pl-6 font-serif text-2xl italic leading-snug text-negro md:text-3xl">
+            <blockquote className="border-l-4 border-oro py-2 pl-6 font-serif text-xl italic leading-snug text-negro md:text-2xl">
               Un sombrero es mucho más que un accesorio: es una expresión de personalidad, una historia tejida a mano y
               un símbolo de nuestras raíces.
             </blockquote>

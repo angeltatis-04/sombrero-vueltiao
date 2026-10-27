@@ -14,8 +14,21 @@ export type Producto = {
   nuevo?: boolean;
 };
 
+// Producto tal como se escribe en data/productos.ts: el precio sale de la línea de vueltas
+// (data/catalogo.ts) y el descuento de data/tienda.ts. `precio` solo si ese sombrero cuesta distinto.
+export type ProductoBase = Omit<Producto, "precio" | "precioAnterior"> & { precio?: number };
+
 export type NivelVueltas = {
   vueltas: number;
   nombre: string;
   detalle: string;
+  precio: number;
+  incluye?: string; // p. ej. "Estuche"
+};
+
+export type Categoria = {
+  id: string;
+  nombre: string;
+  descripcion: string;
+  vueltas: number[];
 };

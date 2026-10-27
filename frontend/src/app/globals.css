@@ -1,26 +1,35 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-display: var(--font-anton);
-  --font-serif: var(--font-fraunces);
-  --font-sans: var(--font-inter);
+  --font-display: var(--font-montserrat);
+  --font-serif: var(--font-montserrat);
+  --font-sans: var(--font-montserrat);
 }
 
-/* Paleta: negro del tinte, hueso y caña de la fibra, oro como acento */
+/* Paleta casi monocromática: negro, grises neutros y blanco. Vino como acento y verde para ofertas */
 @theme {
-  --color-negro: #0e0d0b;
-  --color-grafito: #1c1a17;
-  --color-hueso: #f5f1e8;
-  --color-cana: #e8dcc0;
-  --color-arena: #cdb98d;
-  --color-oro: #c9a048;
-  --color-oro-claro: #e3c27a;
-  --color-rojo: #b8321e;
+  --color-negro: #141414;
+  --color-grafito: #2b2b2b;
+  --color-hueso: #f3f3f1;
+  --color-cana: #e8e8e5;
+  --color-arena: #d0d0cb;
+  --color-oro: #6e2b2b;
+  --color-oro-claro: #8c3b3b;
+  --color-rojo: #b3261e;
+  --color-oferta: #ff5a3c;
+  --color-oferta-brillo: #ffc94d;
 
   --animate-marquesina: marquesina 30s linear infinite;
   @keyframes marquesina {
     to {
       transform: translateX(-50%);
+    }
+  }
+
+  --animate-rebote: rebote 0.45s ease-out;
+  @keyframes rebote {
+    40% {
+      transform: scale(1.35);
     }
   }
 
@@ -34,8 +43,18 @@
 }
 
 body {
-  background: var(--color-hueso);
+  background: #fafafa;
   color: var(--color-negro);
+}
+
+/* Títulos en negrita apretada; las frases en cursiva van livianas */
+.font-display {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.font-serif {
+  font-weight: 300;
 }
 
 /* Foco visible y coherente para navegación con teclado */
@@ -44,21 +63,58 @@ body {
   outline-offset: 2px;
 }
 
-/* Banda en zigzag, como las pintas del sombrero */
-.greca {
-  height: 12px;
-  background-repeat: repeat-x;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 10 L6 2 L12 10 L18 2 L24 10' fill='none' stroke='%230e0d0b' stroke-width='2'/%3E%3C/svg%3E");
-}
-
-.greca-claro {
-  height: 12px;
-  background-repeat: repeat-x;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 10 L6 2 L12 10 L18 2 L24 10' fill='none' stroke='%23c9a048' stroke-width='2'/%3E%3C/svg%3E");
-}
-
 html {
   scroll-behavior: smooth;
+}
+
+/* Texto de ofertas con un brillo que lo recorre de lado a lado */
+.brillo-oferta {
+  background: linear-gradient(
+    90deg,
+    var(--color-oferta) 0%,
+    var(--color-oferta) 35%,
+    var(--color-oferta-brillo) 50%,
+    var(--color-oferta) 65%,
+    var(--color-oferta) 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: brillo 2.8s linear infinite;
+}
+
+@keyframes brillo {
+  from {
+    background-position: 100% center;
+  }
+  to {
+    background-position: -150% center;
+  }
+}
+
+/* Entrada del banner: cada elemento sube en cascada (usar con style="--retraso: 200ms") */
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+.entrada {
+  animation: subir 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--retraso, 0ms);
+}
+
+/* Aparece al hacer scroll, sin JavaScript. En navegadores sin soporte simplemente se ve fijo. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .aparecer {
+      animation: subir linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

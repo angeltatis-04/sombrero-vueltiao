@@ -14,7 +14,7 @@ function CargandoCarrito() {
       <div className="space-y-4">
         {[0, 1].map((i) => (
           <div key={i} className="flex animate-pulse gap-5 border-b border-negro/10 py-6">
-            <div className="h-32 w-28 bg-negro/5" />
+            <div className="h-32 w-28 rounded-xl bg-negro/5" />
             <div className="flex-1 space-y-3 pt-2">
               <div className="h-5 w-1/2 bg-negro/5" />
               <div className="h-4 w-1/3 bg-negro/5" />
@@ -22,13 +22,13 @@ function CargandoCarrito() {
           </div>
         ))}
       </div>
-      <div className="h-72 animate-pulse bg-negro/5" />
+      <div className="h-72 animate-pulse rounded-3xl bg-negro/5" />
     </div>
   );
 }
 
 export default function Carrito() {
-  const { items, cargado, totalItems, actualizarCantidad, quitar } = useCart();
+  const { items, cargado, totalItems, actualizarCantidad, cambiarTalla, quitar } = useCart();
   const lineas = resolverLineas(items);
 
   if (cargado && lineas.length === 0) return <CarritoVacio />;
@@ -37,11 +37,11 @@ export default function Carrito() {
     <div className="mx-auto max-w-7xl px-4 pb-24 pt-10 md:pt-14">
       <div className="flex flex-wrap items-end justify-between gap-4 border-b border-negro/10 pb-6">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-oro">Tu compra</p>
-          <h1 className="mt-2 font-display text-6xl uppercase">Carrito</h1>
+          <p className="text-sm font-medium text-oro">Tu compra</p>
+          <h1 className="mt-2 font-display text-3xl md:text-4xl">Carrito</h1>
         </div>
         {cargado && (
-          <p className="text-sm text-negro/60">
+          <p className="text-sm text-negro/70">
             {totalItems} {totalItems === 1 ? "sombrero" : "sombreros"} ·{" "}
             <Link href={RUTAS.catalogo} className="underline underline-offset-4 hover:text-negro">
               Seguir comprando
@@ -60,12 +60,13 @@ export default function Carrito() {
                 key={linea.clave}
                 linea={linea}
                 onCambiarCantidad={(cantidad) => actualizarCantidad(linea.clave, cantidad)}
+                onCambiarTalla={(talla) => cambiarTalla(linea.clave, talla)}
                 onQuitar={() => quitar(linea.clave)}
               />
             ))}
           </ul>
 
-          <ResumenPedido resumen={calcularResumen(lineas)} />
+          <ResumenPedido resumen={calcularResumen(lineas)} lineas={lineas} />
         </div>
       )}
     </div>

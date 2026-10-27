@@ -11,18 +11,18 @@ export default function GaleriaProducto({ producto }: { producto: Producto }) {
   const [activa, setActiva] = useState(0);
 
   if (fotos.length === 0) {
-    return <FotoSombrero producto={producto} sizes="(min-width: 1024px) 55vw, 100vw" />;
+    return <FotoSombrero producto={producto} sizes="(min-width: 1024px) 40vw, 100vw" className="rounded-3xl ring-1 ring-negro/5" />;
   }
 
   return (
     <div>
-      <div className="relative aspect-square overflow-hidden bg-white">
+      <div className="relative aspect-square overflow-hidden rounded-3xl bg-white ring-1 ring-negro/5">
         <Image
           src={fotos[activa]}
           alt={`${producto.nombre}, foto ${activa + 1} de ${fotos.length}`}
           fill
           priority
-          sizes="(min-width: 1024px) 55vw, 100vw"
+          sizes="(min-width: 1024px) 40vw, 100vw"
           className="object-contain"
         />
       </div>
@@ -34,7 +34,7 @@ export default function GaleriaProducto({ producto }: { producto: Producto }) {
               onClick={() => setActiva(i)}
               aria-label={`Ver foto ${i + 1}`}
               aria-current={i === activa}
-              className={`relative aspect-square overflow-hidden bg-white ring-1 transition ${
+              className={`relative aspect-square overflow-hidden rounded-xl bg-white ring-1 transition ${
                 i === activa ? "ring-negro" : "ring-negro/10 hover:ring-negro/40"
               }`}
             >

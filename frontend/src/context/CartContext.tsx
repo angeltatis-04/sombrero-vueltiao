@@ -13,6 +13,8 @@ type CartContextValue = {
   agregar: (item: CartItem) => void;
   // `clave` identifica la línea (ver claveItem): sombrero + talla + personalización
   actualizarCantidad: (clave: string, cantidad: number) => void;
+  // Si ya hay una línea igual con esa talla, se suman las cantidades
+  cambiarTalla: (clave: string, talla: string) => void;
   quitar: (clave: string) => void;
   vaciar: () => void;
 };
@@ -49,6 +51,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const actualizarCantidad = (clave: string, cantidad: number) =>
     setItems((prev) => prev.map((i) => (claveItem(i) === clave ? { ...i, cantidad: Math.max(1, cantidad) } : i)));
 
+  const cambiarTalla = (clave: string, talla: string) =>
+    setItems((prev) => {
+      const actual = prev.find((i) => claveItem(i) === clave);
+      if (!actual || actual.talla === talla) return prev;
+      const cambiado = { ...actual, talla };
+      const nueva = claveItem(cambiado);
+      const existente = prev.find((i) => claveItem(i) === nueva);
+      return existente
+        ? prev
+            .filter((i) => claveItem(i) !== clave)
+            .map((i) => (i === existente ? { ...i, cantidad: i.cantidad + actual.cantidad } : i))
+        : prev.map((i) => (i === actual ? cambiado : i));
+    });
+
   const quitar = (clave: string) => setItems((prev) => prev.filter((i) => claveItem(i) !== clave));
 
   const vaciar = () => setItems([]);
@@ -56,7 +72,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const totalItems = items.reduce((suma, i) => suma + i.cantidad, 0);
 
   return (
-    <CartContext.Provider value={{ items, totalItems, cargado, agregar, actualizarCantidad, quitar, vaciar }}>
+    <CartContext.Provider value={{ items, totalItems, cargado, agregar, actualizarCantidad, cambiarTalla, quitar, vaciar }}>
       {children}
     </CartContext.Provider>
   );

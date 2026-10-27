@@ -16,11 +16,11 @@ export default function DatosEmpresa({ className = "" }: { className?: string })
   ].filter((d) => d.valor);
 
   return (
-    <dl className={`grid gap-px bg-current/15 sm:grid-cols-2 lg:grid-cols-3 ${className}`}>
+    <dl className={`grid gap-3 sm:grid-cols-2 lg:grid-cols-3 ${className}`}>
       {datos.map((d) => (
-        <div key={d.titulo} className="bg-negro p-6">
-          <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-oro">{d.titulo}</dt>
-          <dd className="mt-2 break-words font-display text-2xl md:text-3xl">
+        <div key={d.titulo} className="rounded-2xl border border-white/80 bg-white/60 backdrop-blur-md p-5">
+          <dt className="text-sm text-oro">{d.titulo}</dt>
+          <dd className="mt-1 break-words text-xl font-semibold">
             {d.href ? (
               <a href={d.href} className="hover:text-oro">
                 {d.valor}

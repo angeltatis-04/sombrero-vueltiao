@@ -1,32 +1,25 @@
-import Artistas from "@/components/inicio/Artistas";
 import Coleccion from "@/components/inicio/Coleccion";
-import Contacto from "@/components/inicio/Contacto";
-import Diferencias from "@/components/inicio/Diferencias";
-import GuiaVueltas from "@/components/inicio/GuiaVueltas";
 import Hero from "@/components/inicio/Hero";
 import Manifiesto from "@/components/inicio/Manifiesto";
 import Marquesina from "@/components/inicio/Marquesina";
-import Nosotros from "@/components/inicio/Nosotros";
-import Proceso from "@/components/inicio/Proceso";
 
-type Props = { searchParams: Promise<{ vueltas?: string; q?: string }> };
+type Props = { searchParams: Promise<{ vueltas?: string; categoria?: string; q?: string }> };
 
-// Página única: todas las secciones de la tienda en orden. El menú salta a cada una por su ancla.
+// El inicio va directo a comprar: banner, colección y cierre.
+// Nosotros, colaboraciones, vueltas, contacto y descuentos tienen su propia página (ver RUTAS).
 export default async function Home({ searchParams }: Props) {
-  const { vueltas, q } = await searchParams;
+  const { vueltas, categoria, q } = await searchParams;
 
   return (
     <>
       <Hero />
       <Marquesina />
-      <Nosotros />
-      <Diferencias />
-      <Coleccion vueltasInicial={vueltas ? Number(vueltas) : undefined} busquedaInicial={q} />
-      <Artistas />
-      <GuiaVueltas />
-      <Proceso />
+      <Coleccion
+        vueltasInicial={vueltas ? Number(vueltas) : undefined}
+        categoriaInicial={categoria}
+        busquedaInicial={q}
+      />
       <Manifiesto />
-      <Contacto />
     </>
   );
 }

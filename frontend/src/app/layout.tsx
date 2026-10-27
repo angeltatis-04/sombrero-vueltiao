@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Anton, Fraunces, Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
+import BotonWhatsApp from "@/components/layout/BotonWhatsApp";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { SITIO } from "@/config/sitio";
 import { CartProvider } from "@/context/CartContext";
 
-const anton = Anton({ subsets: ["latin"], weight: "400", variable: "--font-anton" });
-const fraunces = Fraunces({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-fraunces" });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const montserrat = Montserrat({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-montserrat" });
 
 export const metadata: Metadata = {
   title: {
@@ -20,12 +19,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${anton.variable} ${fraunces.variable} ${inter.variable}`}>
+    <html lang="es" className={montserrat.variable}>
       <body className="flex min-h-screen flex-col font-sans antialiased">
         <CartProvider>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pt-16 md:pt-20">{children}</main>
           <Footer />
+          <BotonWhatsApp />
         </CartProvider>
       </body>
     </html>

@@ -26,7 +26,7 @@ Abre http://localhost:3000
 
 ## Páginas
 
-- `/` Página única: hero, colección con filtros, artistas, historia, guía de vueltas y contacto
+- `/` Página única: hero, colección con filtros, historia, artistas, guía de vueltas y contacto
 - `/productos` Redirige a la sección Colección del inicio
 - `/productos/[slug]` Detalle con selector de talla y cantidad
 - `/carrito` Carrito (se guarda en el navegador)
@@ -76,4 +76,4 @@ En `frontend/src/data/tienda.ts` se configuran los datos que solo el dueño pued
 - `PERSONALIZACION.tiposAla`: opciones de tipo de ala (si se llena, aparece en la ficha del producto).
 - `FOTOS_PROCESO`: fotos del proceso artesanal (en `public/proceso/`).
 
-La foto del banner principal se cambia en `SITIO.fotoPortada` (`src/config/sitio.ts`).
+Las fotos del banner principal (se van turnando) se cambian en `SITIO.fotosPortada`, y el tiempo de cada una en `SITIO.segundosPorFoto` (`src/config/sitio.ts`).
