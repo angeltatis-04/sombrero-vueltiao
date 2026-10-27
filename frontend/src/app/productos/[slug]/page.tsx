@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AgregarAlCarrito from "@/components/producto/AgregarAlCarrito";
+import BarraCompraMovil from "@/components/producto/BarraCompraMovil";
 import GaleriaProducto from "@/components/producto/GaleriaProducto";
 import GrillaProductos from "@/components/producto/GrillaProductos";
 import Precio from "@/components/producto/Precio";
@@ -90,7 +91,7 @@ export default async function ProductoPage({ params }: Props) {
             <p className="mt-6 text-base leading-relaxed text-grafito">{producto.descripcion}</p>
             {nivel && <p className="mt-3 text-sm leading-relaxed text-negro/70">{nivel.detalle}</p>}
 
-            <div className="mt-8 border-t border-negro/10 pt-8">
+            <div id="comprar" className="mt-8 scroll-mt-24 border-t border-negro/10 pt-8">
               {/* key: al pasar a otro sombrero el formulario empieza de cero */}
               <AgregarAlCarrito key={producto.slug} slug={producto.slug} />
             </div>
@@ -130,6 +131,7 @@ export default async function ProductoPage({ params }: Props) {
           </TituloSeccion>
           <GrillaProductos productos={getRelacionados(producto)} className="mt-10" />
         </section>
+        <BarraCompraMovil producto={producto} destino="comprar" />
       </div>
     </div>
   );

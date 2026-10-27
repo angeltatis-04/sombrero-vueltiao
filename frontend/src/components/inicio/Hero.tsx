@@ -2,14 +2,14 @@ import type { CSSProperties } from "react";
 import FondoPortada from "./FondoPortada";
 import Antetitulo from "@/components/ui/Antetitulo";
 import { BotonLink } from "@/components/ui/Boton";
-import { EMPRESA, RUTAS } from "@/config/sitio";
+import { EMPRESA, RUTAS, SITIO } from "@/config/sitio";
 
 const retraso = (ms: number) => ({ "--retraso": `${ms}ms` }) as CSSProperties;
 
 // Banner con el lema centrado sobre las fotos que se turnan.
 export default function Hero() {
   return (
-    <section className="relative isolate -mt-16 flex min-h-[88svh] items-center overflow-hidden bg-negro text-white md:-mt-20 md:min-h-[92svh]">
+    <section className="relative isolate -mt-16 flex min-h-[78svh] items-center overflow-hidden bg-negro text-white md:-mt-20 md:min-h-[92svh]">
       <FondoPortada />
       {/* Oscurece parejo para que el texto centrado se lea sobre cualquier foto */}
       <div className="absolute inset-0 -z-10 bg-negro/25" />
@@ -35,6 +35,13 @@ export default function Hero() {
           </BotonLink>
         </div>
       </div>
+
+      <p
+        className="entrada absolute bottom-28 right-8 hidden origin-bottom-right rotate-90 text-[11px] font-semibold uppercase tracking-[0.4em] text-white/60 md:block"
+        style={retraso(900)}
+      >
+        {SITIO.marca} — Hecho a mano
+      </p>
     </section>
   );
 }

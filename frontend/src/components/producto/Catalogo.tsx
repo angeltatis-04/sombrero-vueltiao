@@ -68,7 +68,7 @@ export default function Catalogo({ productos, vueltasInicial, categoriaInicial, 
   };
 
   const tarjeta = (activo: boolean) =>
-    `flex min-w-44 shrink-0 items-center gap-3 rounded-2xl border p-2.5 pr-4 text-left transition md:min-w-0 ${
+    `flex min-w-44 shrink-0 snap-start items-center gap-3 rounded-2xl border p-2.5 pr-4 text-left transition md:min-w-0 ${
       activo ? "border-oro bg-oro/5 ring-1 ring-oro" : "border-negro/10 bg-white/70 backdrop-blur hover:-translate-y-0.5 hover:border-negro/25 hover:shadow-md"
     }`;
 
@@ -79,32 +79,35 @@ export default function Catalogo({ productos, vueltasInicial, categoriaInicial, 
 
   return (
     <>
-      {/* Categorías: en celular se desplazan horizontalmente */}
-      <div
-        className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-5 md:px-0"
-        role="group"
-        aria-label="Categorías"
-      >
-        <button className={tarjeta(!activa)} onClick={() => elegirCategoria(null)} aria-pressed={!activa}>
-          <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-oro/10 font-display text-xl text-oro">
-            {productos.length}
-          </span>
-          <span>
-            <span className="block font-semibold">Todos</span>
-            <span className="text-xs text-negro/65">Toda la colección</span>
-          </span>
-        </button>
-        {CATEGORIAS.map((c) => (
-          <button key={c.id} className={tarjeta(activa?.id === c.id)} onClick={() => elegirCategoria(c.id)} aria-pressed={activa?.id === c.id}>
-            {muestras[c.id] && (
-              <FotoSombrero producto={muestras[c.id]} sizes="56px" className="h-14 w-14 shrink-0 rounded-xl" />
-            )}
+      {/* Categorías: en celular se desplazan horizontalmente; el difuminado del borde avisa que hay más */}
+      <div className="relative">
+        <div
+          className="-mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-5 md:px-0"
+          role="group"
+          aria-label="Categorías"
+        >
+          <button className={tarjeta(!activa)} onClick={() => elegirCategoria(null)} aria-pressed={!activa}>
+            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-oro/10 font-display text-xl text-oro">
+              {productos.length}
+            </span>
             <span>
-              <span className="block font-semibold">{c.nombre}</span>
-              <span className="text-xs text-negro/65">Desde {formatoCOP(precioDesde(c))}</span>
+              <span className="block font-semibold">Todos</span>
+              <span className="text-xs text-negro/65">Toda la colección</span>
             </span>
           </button>
-        ))}
+          {CATEGORIAS.map((c) => (
+            <button key={c.id} className={tarjeta(activa?.id === c.id)} onClick={() => elegirCategoria(c.id)} aria-pressed={activa?.id === c.id}>
+              {muestras[c.id] && (
+                <FotoSombrero producto={muestras[c.id]} sizes="56px" className="h-14 w-14 shrink-0 rounded-xl" />
+              )}
+              <span>
+                <span className="block font-semibold">{c.nombre}</span>
+                <span className="text-xs text-negro/65">Desde {formatoCOP(precioDesde(c))}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+        <div className="pointer-events-none absolute -right-4 bottom-2 top-0 w-14 bg-gradient-to-l from-white md:hidden" aria-hidden />
       </div>
 
       <div className="mt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
