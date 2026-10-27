@@ -3,19 +3,20 @@ import { BotonLink } from "@/components/ui/Boton";
 import { RUTAS, SITIO } from "@/config/sitio";
 import { FOTOS_ARTISTAS } from "@/data/artistas";
 
-// Cierre de la página con el lema de la marca sobre una foto a pantalla completa.
+// Cierre de la página con el lema de la marca sobre fotos de fondo.
+// Las fotos son verticales: en celular va una y desde md tres en fila, para no estirarlas y que no se vean borrosas.
 export default function Manifiesto() {
-  const foto = FOTOS_ARTISTAS[3];
+  const fotos = [FOTOS_ARTISTAS[3], FOTOS_ARTISTAS[4], FOTOS_ARTISTAS[7]];
 
   return (
     <section className="relative isolate overflow-hidden bg-negro py-20 text-white md:py-28">
-      <Image
-        src={foto.src}
-        alt=""
-        fill
-        sizes="100vw"
-        className="-z-10 object-cover object-[50%_20%] opacity-70"
-      />
+      <div className="absolute inset-0 -z-10 grid gap-1 opacity-70 md:grid-cols-3">
+        {fotos.map((f, i) => (
+          <div key={f.src} className={`relative ${i > 0 ? "hidden md:block" : ""}`}>
+            <Image src={f.src} alt="" fill quality={90} sizes="(min-width: 768px) 34vw, 100vw" className="object-cover object-[50%_20%]" />
+          </div>
+        ))}
+      </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-negro/20 via-negro/40 to-negro/60" />
 
       <div className="mx-auto max-w-7xl px-4 text-center">

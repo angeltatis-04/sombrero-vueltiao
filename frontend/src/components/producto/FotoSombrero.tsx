@@ -13,7 +13,7 @@ export default function FotoSombrero({ producto, sizes = "(min-width: 1024px) 20
   return (
     <div className={`relative aspect-square overflow-hidden bg-white ${className}`}>
       {producto.imagen ? (
-        <Image src={producto.imagen} alt={producto.nombre} fill sizes={sizes} className="object-contain" />
+        <Image src={producto.imagen} alt={producto.nombre} fill quality={90} sizes={sizes} className="object-contain" />
       ) : (
         <SombreroArt acento={producto.acento} className="absolute inset-0 m-auto w-4/5" />
       )}

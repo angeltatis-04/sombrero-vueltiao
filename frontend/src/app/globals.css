@@ -6,20 +6,31 @@
   --font-sans: var(--font-montserrat);
 }
 
-/* Paleta casi monocromática: negro, grises neutros y blanco. Vino como acento y verde para ofertas */
+/* Paleta casi monocromática: negro, grises neutros y blanco, con coral como único acento */
 @theme {
   --color-negro: #141414;
   --color-grafito: #2b2b2b;
   --color-hueso: #f3f3f1;
   --color-cana: #e8e8e5;
   --color-arena: #d0d0cb;
-  --color-oro: #6e2b2b;
-  --color-oro-claro: #8c3b3b;
+  --color-oro: #e0482c;
+  --color-oro-claro: #ff7a5c;
   --color-rojo: #b3261e;
   --color-oferta: #ff5a3c;
   --color-oferta-brillo: #ffc94d;
 
-  --animate-marquesina: marquesina 30s linear infinite;
+  --animate-balanceo: balanceo 1.6s ease-in-out infinite;
+  @keyframes balanceo {
+    0%,
+    100% {
+      transform: rotate(-12deg);
+    }
+    50% {
+      transform: rotate(12deg);
+    }
+  }
+
+  --animate-marquesina: marquesina 35s linear infinite;
   @keyframes marquesina {
     to {
       transform: translateX(-50%);
@@ -65,6 +76,35 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Franja en movimiento: coral de ofertas con el color ondulando suavemente */
+.franja-viva {
+  background: linear-gradient(90deg, var(--color-oferta), #d93a2b, #ff7a3c, var(--color-oferta));
+  background-size: 300% 100%;
+  animation: ondular 8s ease-in-out infinite alternate;
+}
+
+@keyframes ondular {
+  to {
+    background-position: 100% 0;
+  }
+}
+
+/* Destello de luz que cruza la franja cada pocos segundos */
+.destello {
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.35), transparent);
+  animation: cruzar 4s ease-in-out infinite;
+}
+
+@keyframes cruzar {
+  from {
+    transform: translateX(-120%);
+  }
+  60%,
+  to {
+    transform: translateX(520%);
+  }
 }
 
 /* Texto de ofertas con un brillo que lo recorre de lado a lado */

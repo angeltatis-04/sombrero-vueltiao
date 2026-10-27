@@ -69,12 +69,12 @@ export default function Catalogo({ productos, vueltasInicial, categoriaInicial, 
 
   const tarjeta = (activo: boolean) =>
     `flex min-w-44 shrink-0 items-center gap-3 rounded-2xl border p-2.5 pr-4 text-left transition md:min-w-0 ${
-      activo ? "border-negro bg-white ring-1 ring-negro" : "border-negro/10 bg-white/70 backdrop-blur hover:-translate-y-0.5 hover:border-negro/25 hover:shadow-md"
+      activo ? "border-oro bg-oro/5 ring-1 ring-oro" : "border-negro/10 bg-white/70 backdrop-blur hover:-translate-y-0.5 hover:border-negro/25 hover:shadow-md"
     }`;
 
   const pastilla = (activo: boolean) =>
     `shrink-0 rounded-full px-4 py-1.5 text-sm transition-colors ${
-      activo ? "bg-negro/85 text-white" : "bg-negro/5 text-negro/70 hover:bg-negro/10"
+      activo ? "bg-oro text-white" : "bg-negro/5 text-negro/70 hover:bg-negro/10"
     }`;
 
   return (
@@ -86,7 +86,7 @@ export default function Catalogo({ productos, vueltasInicial, categoriaInicial, 
         aria-label="Categorías"
       >
         <button className={tarjeta(!activa)} onClick={() => elegirCategoria(null)} aria-pressed={!activa}>
-          <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-hueso font-display text-xl text-negro">
+          <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-oro/10 font-display text-xl text-oro">
             {productos.length}
           </span>
           <span>
