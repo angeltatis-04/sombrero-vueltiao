@@ -10,21 +10,10 @@ export const SITIO = {
   titulo: "Sombreros Vueltiao | Tradición que marca la diferencia",
   descripcion:
     "Sombreros vueltiaos originales desde Tuchín, Córdoba, cuna del sombrero vueltiao. Artesanía, estilo e identidad. Envíos a toda Colombia.",
-  // Ruta del logo en /public (p. ej. "/logo.png"). Si es null se muestra el nombre en texto.
-  logo: null as string | null,
-  // Fotos del banner principal; se van turnando. Ideal: alta calidad, horizontales (mín. 2400 px de ancho).
-  fotosPortada: [
-    "/artistas/artista-1.jpg",
-    "/artistas/artista-2.jpg",
-    "/artistas/artista-3.jpg",
-    "/artistas/artista-4.jpg",
-    "/artistas/artista-5.jpg",
-    "/artistas/artista-6.jpg",
-    "/artistas/artista-7.jpg",
-    "/artistas/artista-8.jpg",
-  ],
-  // Segundos que dura cada foto del banner
-  segundosPorFoto: 5,
+  // Logo del menú, en /public, con su tamaño real en px. Si es null se muestra el nombre en texto.
+  logo: null as { src: string; ancho: number; alto: number } | null,
+  // Foto fija del banner principal. Ideal: horizontal, alta calidad (mín. 2400 px de ancho), con espacio oscuro a la izquierda para el texto.
+  fotoPortada: "/portada/sombrero-portada.jpg",
 };
 
 // Datos legales y de contacto de la empresa. Los campos vacíos no se muestran en la página.
