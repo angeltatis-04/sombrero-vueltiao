@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { IconoCamion, IconoEscudo, IconoMano, IconoPluma, IconoRegalo } from "@/components/ui/Iconos";
+import { IconoCamion, IconoMano, IconoPluma, IconoRegalo } from "@/components/ui/Iconos";
 import { ENVIO } from "@/config/sitio";
-import { GARANTIA, OBSEQUIOS, PERSONALIZACION } from "@/data/tienda";
+import { OBSEQUIOS, PERSONALIZACION } from "@/data/tienda";
 import { formatoCOP } from "@/lib/format";
 
 export type Beneficio = { icono: ReactNode; titulo: string; texto: string };
@@ -21,7 +21,6 @@ export function getBeneficios(): Beneficio[] {
       titulo: "Envíos a toda Colombia",
       texto: `Envío gratis en compras desde ${formatoCOP(ENVIO.gratisDesde)}.`,
     },
-    GARANTIA !== null && { icono: <IconoEscudo />, titulo: "Garantía", texto: GARANTIA },
     OBSEQUIOS.length > 0 && { icono: <IconoRegalo />, titulo: "Obsequios incluidos", texto: OBSEQUIOS.join(" · ") },
   ];
   return lista.filter((b): b is Beneficio => Boolean(b));

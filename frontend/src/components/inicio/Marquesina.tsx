@@ -1,6 +1,6 @@
 import { IconoAcordeon, IconoSombrero } from "@/components/ui/Iconos";
 import { ENVIO } from "@/config/sitio";
-import { GARANTIA, PERSONALIZACION } from "@/data/tienda";
+import { PERSONALIZACION } from "@/data/tienda";
 import { formatoCOP } from "@/lib/format";
 
 // Frase destacada: va entre dos acordeones
@@ -13,7 +13,6 @@ const FRASES = [
   { texto: "Hecho a mano en Tuchín" },
   PERSONALIZACION.gratuita && { texto: "Personalización gratis", oferta: true },
   { texto: "100% caña flecha" },
-  GARANTIA && { texto: "Garantía de 1 año", oferta: true },
   { texto: "Se dobla y se desdobla" },
   { texto: "Envíos a toda Colombia" },
   { texto: "Tradición zenú" },

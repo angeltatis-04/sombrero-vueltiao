@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Redes from "@/components/ui/Redes";
 import { EMPRESA, ENLACES_CUENTA, ENLACES_FOOTER, RUTAS, SITIO, hayRedes } from "@/config/sitio";
+import { POLITICAS } from "@/data/politicas";
+
+const ENLACES_LEGALES = POLITICAS.map((p) => ({ href: RUTAS.politica(p.slug), label: p.nombreCorto }));
 
 function Enlaces({ titulo, enlaces }: { titulo: string; enlaces: { href: string; label: string }[] }) {
   return (
@@ -33,7 +36,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 pt-14">
         <p className="max-w-2xl font-serif text-xl italic leading-snug text-negro/75 md:text-2xl">{SITIO.cierre}</p>
 
-        <div className="mt-12 grid gap-10 border-t border-negro/10 pt-10 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mt-12 grid gap-10 border-t border-negro/10 pt-10 sm:grid-cols-2 md:grid-cols-5">
           <div className="md:col-span-2">
             <p className="text-sm font-semibold text-oro">Contacto</p>
             <p className="mt-3 text-xl font-semibold">{EMPRESA.razonSocial}</p>
@@ -46,6 +49,7 @@ export default function Footer() {
           </div>
           <Enlaces titulo="Tienda" enlaces={ENLACES_FOOTER} />
           <Enlaces titulo="Mi cuenta" enlaces={ENLACES_CUENTA.filter((e) => e.href !== RUTAS.carrito)} />
+          <Enlaces titulo="Legal" enlaces={ENLACES_LEGALES} />
         </div>
       </div>
 

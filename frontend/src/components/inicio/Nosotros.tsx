@@ -13,7 +13,6 @@ export default function Nosotros() {
         <h1 className="mt-6 font-display text-4xl uppercase leading-[1.05] md:text-5xl lg:text-6xl">
           Somos <br className="hidden md:block" />
           Sombreros <span className="font-light">Vueltiao</span>
-          <sup className="text-[0.35em]">®</sup>
         </h1>
         <p className="mt-6 font-serif text-xl italic text-negro/70 md:text-2xl">{SITIO.eslogan}</p>
 
@@ -38,21 +37,22 @@ export default function Nosotros() {
               orgullo.
             </p>
             <p>
-              Nacimos en Tuchín, Córdoba, cuna del sombrero vueltiao, con el propósito de llevar la riqueza de nuestra
-              cultura a cada vez más personas, conectando la artesanía ancestral con quienes buscan algo auténtico,
-              especial y diferente.
+              Somos un emprendimiento de Tuchín, Córdoba, cuna del sombrero vueltiao. Aquí, en el corazón del
+              territorio Zenú, la caña flecha se raspa, se tiñe y se trenza a mano como se ha hecho por generaciones.
+              Trabajamos de la mano con artesanos de la región para llevar esa tradición a cada vez más personas.
             </p>
             <blockquote className="border-l-4 border-oro py-2 pl-6 font-serif text-xl italic leading-snug text-negro md:text-2xl">
               Un sombrero es mucho más que un accesorio: es una expresión de personalidad, una historia tejida a mano y
               un símbolo de nuestras raíces.
             </blockquote>
             <p>
-              Por eso, seleccionamos cuidadosamente nuestras piezas, valorando el trabajo artesanal, los detalles y la
-              esencia que hace único a cada sombrero.
+              Seleccionamos cada pieza revisando el tejido, las vueltas y los acabados. Solo vendemos sombreros
+              originales tejidos en caña flecha: nada de imitaciones ni materiales sintéticos. Por ser hechos a mano,
+              cada uno tiene pequeñas diferencias de tono y trenza que lo hacen único.
             </p>
             <p>
-              A través de nuestra tienda online, acercamos esta tradición a Colombia y al mundo, brindándote una
-              experiencia de compra fácil, confiable y con la calidez que nos caracteriza.
+              Desde nuestra tienda en línea enviamos a toda Colombia con una compra fácil, segura y transparente: precios
+              claros, garantía y atención directa por WhatsApp.
             </p>
           </div>
         </div>

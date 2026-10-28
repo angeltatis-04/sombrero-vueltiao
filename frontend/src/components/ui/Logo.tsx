@@ -9,7 +9,6 @@ export default function Logo() {
   return (
     <span className="whitespace-nowrap text-sm font-extrabold uppercase leading-none tracking-[0.18em] min-[380px]:text-base md:text-lg">
       Sombreros <span className="font-light">Vueltiao</span>
-      <sup className="ml-0.5 text-[10px]">®</sup>
     </span>
   );
 }

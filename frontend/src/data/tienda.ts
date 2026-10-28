@@ -13,8 +13,8 @@ export const PERSONALIZACION = {
 // Obsequios que se incluyen con cada sombrero.
 export const OBSEQUIOS: string[] = ["Correa de ajuste", "Pulsera", "Caja de envío"];
 
-// Texto de la garantía.
-export const GARANTIA: string | null = "1 año de garantía. 100% original, tejido a mano en caña flecha.";
+// Plazo de la garantía. Solo se publica en la política de cambios, no como beneficio destacado.
+export const MESES_GARANTIA = 3;
 
 // Descuentos activos: slug del producto → porcentaje. Vacío = no se muestra la sección de descuentos.
 // El precio con descuento se calcula sobre el precio de la línea y se redondea a miles.

@@ -3,8 +3,7 @@ import { EMPRESA } from "@/config/sitio";
 // Ficha con los datos legales y de contacto. Solo aparecen los campos que tengan valor.
 export default function DatosEmpresa({ className = "" }: { className?: string }) {
   const datos = [
-    { titulo: "Razón social", valor: EMPRESA.razonSocial },
-    { titulo: "NIT", valor: EMPRESA.nit },
+    { titulo: "Nombre comercial", valor: EMPRESA.razonSocial },    { titulo: "NIT", valor: EMPRESA.nit },
     {
       titulo: EMPRESA.telefonos.length > 1 ? "Teléfonos" : "Teléfono",
       valor: EMPRESA.telefonos.join(" · "),
